@@ -1,3 +1,4 @@
+import { config } from './src/Utils/config'
 const express = require('express');
 const mongoose = require('mongoose');
 const routes = require('./src/routes');
@@ -5,7 +6,7 @@ const requireDir = require('require-dir');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://DevMichel:michel999@cluster0-e6zxv.mongodb.net/StreamIt?authSource=admin&replicaSet=Cluster0-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true', {
+mongoose.connect(config.CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
