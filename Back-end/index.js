@@ -1,8 +1,8 @@
-import { config } from './src/Utils/config'
 const express = require('express');
 const mongoose = require('mongoose');
 const routes = require('./src/routes');
 const requireDir = require('require-dir');
+const config = require('./src/Utils/config');
 
 const app = express();
 
