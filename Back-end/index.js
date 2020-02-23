@@ -9,10 +9,9 @@ const app = express();
 mongoose.connect(config.CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-})
+});
 
 requireDir('./src/Models/');
-
 
 //Permitindo que o express "entenda" o formato JSON.
 app.use(express.json());
