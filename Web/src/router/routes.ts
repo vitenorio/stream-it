@@ -1,10 +1,11 @@
+import { HomeScreen } from './../screens/HomeScreen/HomeScreen';
 import App from "../App"
 
 export const unauthRoutes = [
   {
     key: 1,
-    path: "/home",
-    component: App
+    path: "/",
+    component: HomeScreen
   },
   {
     key: 2,
@@ -16,8 +17,8 @@ export const unauthRoutes = [
 export const allRoutes = [ 
   {
     key: 1,
-    path: "/home",
-    component: App
+    path: "/",
+    component: HomeScreen
   },
   {
     key: 2,
