@@ -1,0 +1,1 @@
+export const streamitLogo = require('./streamit-logo.png')

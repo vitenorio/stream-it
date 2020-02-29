@@ -3,6 +3,7 @@ import { Navbar } from "../../components/navbar"
 import styled from "styled-components"
 import { colors } from "../../utils/colors"
 import { spacingSizes } from "../../utils/sizes"
+import FormStepper from "../../components/stepper"
 
 const height = window.innerHeight
 
@@ -52,7 +53,7 @@ export const HomeScreen:React.FC = ({}) => {
       </Container>
       <Container>
         <FormContainer>
-
+          <FormStepper/>
         </FormContainer>
       </Container>
       </Content>
