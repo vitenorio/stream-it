@@ -1,11 +1,12 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles, styled } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { colors } from '../utils/colors';
+import styled from "styled-components"
+import { spacingSizes } from '../utils/sizes';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -13,70 +14,76 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '100%',
     },
     button: {
-      margin: theme.spacing(2),
+      margin: theme.spacing(1),
     },
-    completed: {
-      display: 'inline-block',
+    stepperContainer: {
+      
     },
     buttonContainer: {
-  
+      display: 'flex',
+      justifyContent: 'flex-end',
+      marginRight: theme.spacing(4),
     },
   }),
 );
 
-const ButtonSkip = styled(Button)({
-    background: colors.colorPrimary,
-})
+const StepperContent = styled.div`
+  height: 45%;
+  position: relative;
+  padding: ${spacingSizes.small}%;
+`
 
-function getSteps() {
-  return ['Create an account', 'Create an password', 'Add phone number', 'Add birthday', 'Add git and job'];
+export interface FormStepperProps {
+  getSteps: () => string[],
+  getStepContent: (activeStep: any) => any
 }
 
-export default function FormStepper() {
-  const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [completed, setCompleted] = React.useState(new Set<number>());
-  const [skipped, setSkipped] = React.useState(new Set<number>());
-  const steps = getSteps();
+export const FormStepper: React.FunctionComponent<FormStepperProps> = ({
+    getSteps,
+    getStepContent
+}) => {
+  const classes = useStyles()
+  const [activeStep, setActiveStep] = React.useState(0)
+  const [completed, setCompleted] = React.useState(new Set<number>())
+  const [skipped, setSkipped] = React.useState(new Set<number>())
+  const steps = getSteps()
 
   const totalSteps = () => {
-    return getSteps().length;
-  };
+    return getSteps().length
+  }
 
   const isStepOptional = (step: number) => {
-    return step === 2 || step === 4;
-  };
+    return step === 2 || step === 4
+  }
 
   const handleSkip = () => {
     if (!isStepOptional(activeStep)) {
-      // You probably want to guard against something like this
-      // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
+      throw new Error("You can't skip a step that isn't optional.")
     }
 
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
+    setActiveStep(prevActiveStep => prevActiveStep + 1)
     setSkipped(prevSkipped => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
-  };
+      const newSkipped = new Set(prevSkipped.values())
+      newSkipped.add(activeStep)
+      return newSkipped
+    })
+  }
 
   const skippedSteps = () => {
-    return skipped.size;
-  };
+    return skipped.size
+  }
 
   const completedSteps = () => {
-    return completed.size;
-  };
+    return completed.size
+  }
 
   const allStepsCompleted = () => {
-    return completedSteps() === totalSteps() - skippedSteps();
-  };
+    return completedSteps() === totalSteps() - skippedSteps()
+  }
 
   const isLastStep = () => {
-    return activeStep === totalSteps() - 1;
-  };
+    return activeStep === totalSteps() - 1
+  }
 
   const handleNext = () => {
     const newActiveStep =
@@ -84,87 +91,65 @@ export default function FormStepper() {
         ? // It's the last step, but not all steps have been completed
           // find the first step that has been completed
           steps.findIndex((step, i) => !completed.has(i))
-        : activeStep + 1;
+        : activeStep + 1
 
-    setActiveStep(newActiveStep);
-  };
+    setActiveStep(newActiveStep)
+  }
 
   const handleStep = (step: number) => () => {
-    setActiveStep(step);
-  };
+    setActiveStep(step)
+  }
 
   const handleComplete = () => {
-    const newCompleted = new Set(completed);
-    newCompleted.add(activeStep);
-    setCompleted(newCompleted);
+    const newCompleted = new Set(completed)
+    newCompleted.add(activeStep)
+    setCompleted(newCompleted)
 
-    /**
-     * Sigh... it would be much nicer to replace the following if conditional with
-     * `if (!this.allStepsComplete())` however state is not set when we do this,
-     * thus we have to resort to not being very DRY.
-     */
     if (completed.size !== totalSteps() - skippedSteps()) {
-      handleNext();
+      handleNext()
     }
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-    setCompleted(new Set<number>());
-    setSkipped(new Set<number>());
-  };
+  }
 
   const isStepSkipped = (step: number) => {
-    return skipped.has(step);
+    return skipped.has(step)
   };
 
   function isStepComplete(step: number) {
-    return completed.has(step);
+    return completed.has(step)
   }
 
   return (
-    <div className={classes.root}>
-         <div>
-        {allStepsCompleted() ? (
-          <div>
-            <Button onClick={handleReset}>Reset</Button>
-          </div>
-        ) : (
+  <>
+    <StepperContent>{getStepContent(activeStep)}</StepperContent>
+    <div className={classes.stepperContainer}>
           <div className={classes.buttonContainer}>
-            <div>
-            {activeStep !== steps.length &&
-                (completed.has(activeStep) ? (
-                  <Typography variant="caption" className={classes.completed}>
-                    Step {activeStep + 1} already completed
-                  </Typography>
-                ) : (
-                  <Button variant="contained" color="primary" onClick={handleComplete}>
-                    {completedSteps() === totalSteps() - 1 ? 'Pronto' : 'Próximo'}
-                  </Button>
-                ))}
-              {isStepOptional(activeStep) && !completed.has(activeStep) && (
-                <ButtonSkip
-                  variant="contained"
+            {isStepOptional(activeStep) && !completed.has(activeStep) && (
+                <Button
+                  variant="outlined"
                   color="primary"
                   onClick={handleSkip}
                   className={classes.button}
                 >
                   Pular
-                </ButtonSkip>
+                </Button>
               )}
-            </div>
+          {activeStep !== steps.length &&
+               (
+                <Button 
+                  variant="contained" 
+                  color="primary" 
+                  onClick={handleComplete} 
+                  className={classes.button}>
+                  {completedSteps() === totalSteps() - 1 ? 'Pronto' : 'Próximo'}
+                </Button>
+              )}
           </div>
-        )}
-      </div>
       <Stepper alternativeLabel nonLinear activeStep={activeStep}>
         {steps.map((label, index) => {
-          const stepProps: { completed?: boolean } = {};
-          const buttonProps: { optional?: React.ReactNode } = {};
-          if (isStepOptional(index)) {
-            buttonProps.optional = <Typography variant="caption">Optional</Typography>;
-          }
+          const stepProps: { completed?: boolean } = {}
+          const buttonProps: { optional?: React.ReactNode } = {}
           if (isStepSkipped(index)) {
-            stepProps.completed = false;
+            stepProps.completed = false
           }
           return (
             <Step key={label} {...stepProps}>
@@ -174,9 +159,10 @@ export default function FormStepper() {
                 {...buttonProps}
               />
             </Step>
-          );
+          )
         })}
       </Stepper>
-    </div>
-  );
+      </div>
+    </>
+  )
 }

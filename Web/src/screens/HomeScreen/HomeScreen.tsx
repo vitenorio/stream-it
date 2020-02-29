@@ -3,7 +3,8 @@ import { Navbar } from "../../components/navbar"
 import styled from "styled-components"
 import { colors } from "../../utils/colors"
 import { spacingSizes } from "../../utils/sizes"
-import FormStepper from "../../components/stepper"
+import { FormStepper } from "../../components/stepper"
+import { CreateAccountForm, AddPasswordForm, AddPhoneNumberForm, AddBirthdayForm, AddGitandJobForm } from "./FormComponents"
 
 const height = window.innerHeight
 
@@ -41,6 +42,27 @@ const FormContainer = styled.div`
 `
 
 export const HomeScreen:React.FC = ({}) => {
+
+  function getSteps() {
+    return ['Create an account', 'Create an password', 'Add phone number', 'Add birthday', 'Add git and job']
+  }
+  
+  function getStepContent(step: number) {
+    switch (step) {
+      case 0:
+        return <CreateAccountForm/>
+      case 1:
+        return <AddPasswordForm/>
+      case 2:
+        return <AddPhoneNumberForm/>
+        case 3:
+          return <AddBirthdayForm/>
+          case 4:
+            return <AddGitandJobForm/>
+      default:
+        return 'Unknown step'
+    }
+  }
   return (
     <>
     <Navbar/>
@@ -53,7 +75,7 @@ export const HomeScreen:React.FC = ({}) => {
       </Container>
       <Container>
         <FormContainer>
-          <FormStepper/>
+          <FormStepper getSteps={getSteps} getStepContent={getStepContent}/>
         </FormContainer>
       </Container>
       </Content>
