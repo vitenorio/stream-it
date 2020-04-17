@@ -1,4 +1,5 @@
 import React from 'react';
+import { setGlobal, getGlobal } from 'reactn';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -35,7 +36,7 @@ const StepperContent = styled.div`
 
 export interface FormStepperProps {
   getSteps: () => string[],
-  getStepContent: (activeStep: any) => any
+  getStepContent: (activeStep: any, handleComplete: (val: any) => void) => any
 }
 
 export const FormStepper: React.FunctionComponent<FormStepperProps> = ({
@@ -100,7 +101,10 @@ export const FormStepper: React.FunctionComponent<FormStepperProps> = ({
     setActiveStep(step)
   }
 
-  const handleComplete = () => {
+  const handleComplete = (values: any) => {
+    console.log('form', values)
+    setGlobal({values})
+    console.log('getglobal', getGlobal())
     const newCompleted = new Set(completed)
     newCompleted.add(activeStep)
     setCompleted(newCompleted)
@@ -120,7 +124,7 @@ export const FormStepper: React.FunctionComponent<FormStepperProps> = ({
 
   return (
   <>
-    <StepperContent>{getStepContent(activeStep)}</StepperContent>
+    <StepperContent>{getStepContent(activeStep, handleComplete)}</StepperContent>
     <div className={classes.stepperContainer}>
           <div className={classes.buttonContainer}>
             {isStepOptional(activeStep) && !completed.has(activeStep) && (
