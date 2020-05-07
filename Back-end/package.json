@@ -9,8 +9,10 @@
   "dependencies": {
     "@types/node": "^13.7.1",
     "express": "^4.17.1",
+    "knex": "^0.21.1",
     "mongoose": "^5.8.11",
-    "require-dir": "^1.2.0"
+    "require-dir": "^1.2.0",
+    "sqlite3": "^4.2.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
