@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "go": "nodemon index.js"
+    "go": "nodemon src/index.js"
   },
   "dependencies": {
     "@types/node": "^13.7.1",
