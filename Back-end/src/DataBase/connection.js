@@ -1,4 +1,4 @@
-const sqlite3 = require('sqlite3').verbose();
+const sqlite3 = require('./node_modules/sqlite3').verbose();
 
 let db = new sqlite3.Database('./sqlite.sql', (err) => {
     if (err) {
