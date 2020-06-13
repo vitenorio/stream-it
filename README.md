@@ -1,8 +1,8 @@
 <div align="center">
-<img src='./public/logo.png' alt='logo'>
+<img src='./public/logo-black.png' alt='logo'>
 </div>
 <h2> ⚡ Sobre o projeto </h2>
-<p> Comunidade para devs </p>
+<p> Comunidade para devs integrada a api do github </p>
  <img src="/public/mockup.jpg" alt='mockup'/>
 
 <h2> 🚀 Techs </h2>
