@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons';
 import Home from './screens/Home'
 import Profile from './screens/Profile'
 
-const icons = {
+const icons: any = {
     Home: {
         lib: Feather,
         name: 'home'
