@@ -1,3 +1,0 @@
-## Stream It
-
-### Getting started
