@@ -39,14 +39,34 @@ const ProgressBarContainer = styled.div`
 export const Form: React.FC = () => {
     const [activeStep, setActiveStep] = useState(0)
   
-    const steps = [{title: 'Personal Info'}, {title: 'Password'}, {title: 'Additional Info'}]
+    const steps = [
+        {
+            title: 'Personal Info',
+            inputs: [
+                { placeholder: 'Nome'},
+                { placeholder: 'E-mail'},
+            ],
+        }, 
+        {   title: 'Password',
+            inputs: [
+                { placeholder: 'Senha'},
+                { placeholder: 'Confirmar senha'},
+            ],
+        }, 
+        {   title: 'Additional Info',
+            inputs: [
+                { placeholder: 'GitHub'},
+                { placeholder: 'Ocupação'},
+            ],
+        }
+    ]
 
     const onPressBack = () => {
-        setActiveStep(activeStep - 1)
+        activeStep === 0 ? setActiveStep(0) : setActiveStep(activeStep - 1)
     }
 
     const onPressNext = () => {
-        setActiveStep(activeStep + 1)
+        activeStep === steps.length - 1 ? setActiveStep(steps.length - 1) : setActiveStep(activeStep + 1)
     }
 
     return (
@@ -55,9 +75,10 @@ export const Form: React.FC = () => {
             <Spacing/>
             <Text>Crie sua conta</Text>
 
-            <InputRounded placeholder='E-mail'/>
-            <InputRounded placeholder='Senha'/>
-            
+            {steps[activeStep].inputs.map(input => (
+                <InputRounded placeholder={input.placeholder}/>
+            ))}
+    
             <ProgressBarContainer>
                 <ProgressBar steps={steps} activeStep={activeStep}/>
             </ProgressBarContainer>
