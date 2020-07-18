@@ -11,7 +11,7 @@ class UsersController {
             work,
             github
         } = request.body
-                
+
         const user = {
             name,
             email,

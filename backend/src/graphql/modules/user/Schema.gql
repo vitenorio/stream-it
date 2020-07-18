@@ -1,0 +1,36 @@
+type User {
+    id: ID!
+    image: String
+    name: String!
+    email: String!
+    password: String!
+    work: String
+    github: String
+}
+
+type Query {
+    users: [User]!
+    user(id: ID!): User!
+}
+
+input UserInput {
+    image: String
+    name: String!
+    email: String!
+    password: String!
+    work: String
+    github: String
+}
+
+type Mutation {
+    createUser (
+        image: String
+        name: String!
+        email: String!
+        password: String!
+        work: String
+        github: String
+    ): User!
+    updateUser(id: ID!, data: UserInput): User!
+    deleteUser(id: ID!): Boolean!
+}
