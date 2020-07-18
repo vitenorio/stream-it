@@ -18,10 +18,11 @@ const ButtonComponent = styled.button`
 interface ButtonProps { 
     isSecondary?: boolean
     title?: string
+    onClick?: () => void
 }
 
-export const Button: React.FC<ButtonProps> = ({ isSecondary, title }) => {
+export const Button: React.FC<ButtonProps> = ({ isSecondary, title, onClick }) => {
     return (
-        <ButtonComponent type='button' isSecondary={isSecondary}>{title}</ButtonComponent>
+        <ButtonComponent type='button' isSecondary={isSecondary} onClick={onClick}>{title}</ButtonComponent>
     )
 }
