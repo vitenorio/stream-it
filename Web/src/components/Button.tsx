@@ -12,6 +12,7 @@ const ButtonComponent = styled.button`
   background-color: ${(props: ButtonProps) => props.isSecondary ? colors.light : colors.colorPrimary};
   color: ${(props: ButtonProps) => props.isSecondary ? colors.colorPrimary : colors.white};
   border-color: ${(props: ButtonProps) => props.isSecondary ? colors.light : colors.colorPrimary};
+  box-shadow: 2px 2px 3px ${colors.colorPrimary};
 `
 
 interface ButtonProps { 
