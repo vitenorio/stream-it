@@ -9,7 +9,7 @@ import { colors } from '../../utils/colors'
 const FormContainer = styled.div`
   align-items: center;
   text-align: center;
-  margin: 5%;
+  margin: 0 6%;
 `
 
 const Text = styled.h1`
