@@ -22,4 +22,9 @@ export const allRoutes = [
     path: "/SignUp",
     component: SignUpScreen
   },
+  {
+    key: 2,
+    path: "/SignUp",
+    component: SignUpScreen
+  },
 ]
