@@ -7,7 +7,7 @@ export const Router = () => {
 
     const isLoggedIn = getToken()
 
-    const routes = isLoggedIn ? allRoutes : unauthRoutes
+    const routes = allRoutes // TODO: fix routes
 
     return (
     <BrowserRouter>
