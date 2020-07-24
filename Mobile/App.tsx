@@ -4,13 +4,16 @@ import { NavigationContainer } from '@react-navigation/native'
 
 import Navigation from './src/navigation'
 
+import Approach from './src/screens/Approach'
+
 export default function App() {
   return (
     <>
       <StatusBar barStyle="light-content" />
-      <NavigationContainer>
-        <Navigation />
-      </NavigationContainer>
+      <Approach />
     </>
+    // <NavigationContainer>
+    //   <Navigation />
+    // </NavigationContainer>
   );
 }
