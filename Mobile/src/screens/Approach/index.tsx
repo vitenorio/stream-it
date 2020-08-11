@@ -1,5 +1,7 @@
 import React from 'react'
-import { Container, ImageLogo, Phrase, ContainerApproach, ButtonRegister, ButtonText, ButtonLogin, ContainerButtons } from './styles.js'
+import { Container, ImageLogo, Phrase, ContainerApproach, ContainerButtons } from './styles'
+
+import Button from '../../components/Button'
 
 import Logo from '../../../assets/logo.png'
 
@@ -11,16 +13,10 @@ const Approach = () => {
                 <Phrase>Faça parte da comunidade de devs</Phrase>
 
                 <ContainerButtons>
-                    <ButtonRegister>
-                        <ButtonText>Inscreva-se agora</ButtonText>
-                    </ButtonRegister>
-
-                    <ButtonLogin>
-                        <ButtonText>Tem conta? Faça login</ButtonText>
-                    </ButtonLogin>
+                    <Button isSecondary={false} text={'Inscreva-se agora'} />
+                    <Button isSecondary text={'Já possui conta? Faça login'} />
                 </ContainerButtons>
             </ContainerApproach>
-
         </Container>
     )
 }
