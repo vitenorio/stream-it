@@ -1,22 +1,19 @@
 import React from 'react'
-import { Container, ImageLogo, Phrase, ContainerApproach, ContainerButtons } from './styles'
+import { Container, Phrase } from './styles'
+
+import { Image } from 'react-native'
 
 import Button from '../../components/Button'
-
-import Logo from '../../../assets/logo.png'
+import { logo } from '../../../assets'
 
 const Approach = () => {
     return (
         <Container>
-            <ContainerApproach>
-                <ImageLogo source={Logo} />
-                <Phrase>Faça parte da comunidade de devs</Phrase>
+            <Image source={logo} />
+            <Phrase>Faça parte da comunidade de devs</Phrase>
 
-                <ContainerButtons>
-                    <Button isSecondary={false} text={'Inscreva-se agora'} />
-                    <Button isSecondary text={'Já possui conta? Faça login'} />
-                </ContainerButtons>
-            </ContainerApproach>
+            <Button text={'Inscreva-se agora'} />
+            <Button isSecondary text={'Já possui conta? Faça login'} />
         </Container>
     )
 }

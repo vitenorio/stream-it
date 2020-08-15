@@ -1,25 +1,15 @@
 import React from 'react'
-import { Text, ButtonPrimary, ButtonSecondary } from './styles'
+import { Text, Button } from './styles'
 
 interface ButtonProps {
     text: String
-    isSecondary: Boolean
+    isSecondary?: Boolean
 }
 
 const ButtonComponent: React.FC<ButtonProps> = ({ text, isSecondary }) => (
-    <>
-        {isSecondary ? (
-                <ButtonSecondary>
-                    <Text>{text}</Text>
-                </ButtonSecondary>
-            )
-            : (
-                <ButtonPrimary>
-                    <Text>{text}</Text>
-                </ButtonPrimary>
-            )
-        }
-    </>
+    <Button isSecondary={isSecondary}>
+        <Text>{text}</Text>
+    </Button>
 )
 
 export default ButtonComponent
