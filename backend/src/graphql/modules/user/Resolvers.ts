@@ -1,18 +1,17 @@
-import conn from '../../../database/connection'
+import connection from '../../../database/connection'
+import createUser from '../../../useCases/users/createUser'
 
 export default {
     Query: {
-        users: () => conn('users').select('*')
+        users: () => connection('users').select('*'),
+        // @ts-ignore types for _ and args 
+        login: async (_, { email, password }) => { 
+            const user =  await connection('users').where({ 'email': email, 'password': password }).first()
+            return !!user
+        },
     },
     Mutation: {
-        createUser: async (root: any, args: any) => {
-    
-            const { name, email, password } = args.input
-            const user = { name, email, password }
-     
-            await conn('users').insert(user)
-
-            return user    
-        },
+        // @ts-ignore types for _ and args 
+        createUser: async (_, args) => createUser(_, args),
     }
-}
+} 

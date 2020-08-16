@@ -4,8 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "npx nodemon src/index.ts -e ts,gql",
-    "go": "ts-node-dev --transpileOnly --ignore-watch node_modules src/index.ts -e ts,gql",
+    "dev": "npx nodemon src/index.ts -e ts,gql --transpileOnly --ignore-watch node_modules",
     "migrate": "knex --knexfile knexfile.ts migrate:latest"
   },
   "dependencies": {
