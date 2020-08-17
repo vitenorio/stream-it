@@ -6,11 +6,13 @@ type User {
     password: String!
     work: String
     github: String
+    message: String
 }
 
 type Query {
-    users: [User]!
+    users: [User!]!
     user(id: ID!): User!
+    login(email: String!, password: String!): Boolean!
 }
 
 input UserInput {
@@ -23,14 +25,7 @@ input UserInput {
 }
 
 type Mutation {
-    createUser (
-        image: String
-        name: String!
-        email: String!
-        password: String!
-        work: String
-        github: String
-    ): User!
-    updateUser(id: ID!, data: UserInput): User!
+    createUser(input: UserInput!): User!
+    updateUser(id: ID!, data: UserInput!): User!
     deleteUser(id: ID!): Boolean!
 }
