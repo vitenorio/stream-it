@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Container, Phrase } from './styles'
 
 import { Image } from 'react-native'

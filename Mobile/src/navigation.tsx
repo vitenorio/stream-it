@@ -7,7 +7,7 @@ import Profile from './screens/Profile'
 
 const Tab = createBottomTabNavigator()
 
-export default function Navigation() {
+export function Navigation() {
     return (
         <Tab.Navigator
             tabBarOptions={{

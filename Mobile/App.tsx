@@ -2,18 +2,19 @@ import React from 'react'
 import { StatusBar } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 
-import Navigation from './src/navigation'
+import InitialNavigation from './src/InitialNavigation'
 
 import Approach from './src/screens/Approach'
 
 export default function App() {
   return (
-    <>
+    <NavigationContainer>
       <StatusBar barStyle="light-content" />
-      <Approach />
-    </>
-    // <NavigationContainer>
-    //   <Navigation />
-    // </NavigationContainer>
+      <InitialNavigation />
+    </NavigationContainer>
+    // <>
+    //   <StatusBar barStyle="light-content" />
+    //   <Approach />
+    // </>
   );
 }
